@@ -12,4 +12,4 @@
 FROM ubuntu
 
 # install the needed tools in our container
-RUN apt install build-essential git
+RUN apt-get update && apt-get install build-essential git net-tools -y

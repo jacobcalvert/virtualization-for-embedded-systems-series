@@ -15,7 +15,7 @@
 #include <fcntl.h> 
 #include <string.h>
 #include <signal.h>
-
+#include <errno.h>
 typedef struct
 {
 	int tty_fd;
@@ -134,7 +134,7 @@ int modem_setup(config_settings_t *cfg, char *device, int port)
 	cfg->tty_fd = open(device, O_RDWR | O_NOCTTY | O_SYNC);
 	if(cfg->tty_fd < 0)
 	{
-		modem_log("Failed to open device '%s'", device);
+		modem_log("Failed to open device '%s': %s", device, strerror(errno));
 		return -1;
 	}
     memset (&tty, 0, sizeof tty);
